@@ -12,7 +12,6 @@ module RailsLogSorter
       current_requests = {}
 
       log.split("\n").each {|line|
-        begin
         line = Line.new(line)
 
         request = current_requests[line.pid]
@@ -35,11 +34,6 @@ module RailsLogSorter
           current_requests[line.pid] = nil
         else
           request.lines << line if request
-        end
-
-        rescue
-          p line
-          raise
         end
       }
     end
