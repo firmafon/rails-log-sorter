@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "rails-log-sorter"
+
+file = ARGV[0]
+action = ARGV[1]
+limit = (ARGV[2] || 0).to_f
+
+log = RailsLogSorter::Log.new_with_file(file)
+
+reqs = log.find_slowest(action, limit)
+reqs.each {|req|
+  req.lines.each {|line| puts line.original_line}
+  puts ""
+  puts "*" * 50
+  puts ""
+}
