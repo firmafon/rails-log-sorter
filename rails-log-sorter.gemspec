@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.summary     = "Sort log files"
   s.description = "Sort log files"
 
+  s.executables << "rails-log-sorter"
   s.files = Dir["lib/**/*"]
   s.test_files = Dir["test/**/*"]
 end
